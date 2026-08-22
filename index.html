@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jagdamba Optical | Frames, Lenses & Eyewear</title>
+  <meta name="description" content="Jagdamba Optical - premium frames, sunglasses and lenses.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="#home"><span class="logo-mark">👑</span><span><b>Jagdamba</b><small>OPTICAL</small></span></a>
+  <nav id="nav">
+    <a href="#home">Home</a><a href="#frames">Frames</a><a href="#sunglasses">Sunglasses</a>
+    <a href="#lenses">Lenses</a><a href="#prices">Price List</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="menu" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="hero-content">
+    <p class="eyebrow">STYLISH FRAMES • PREMIUM LENSES • TRUSTED SERVICE</p>
+    <h1>See the World<br><span>More Clearly.</span></h1>
+    <p>Discover stylish eyewear, quality lenses and professional optical service — all in one place.</p>
+    <div class="actions"><a class="btn primary" href="#frames">Explore Frames</a><a class="btn ghost" href="#prices">View Price List</a></div>
+  </div>
+</section>
+
+<section class="trust">
+  <div>👓 <b>Wide Collection</b><small>Frames & Sunglasses</small></div>
+  <div>◉ <b>Premium Lenses</b><small>Quality Lens Options</small></div>
+  <div>✦ <b>Expert Service</b><small>Professional Eye Care</small></div>
+  <div>♥ <b>Trusted Store</b><small>Customer Satisfaction</small></div>
+</section>
+
+<section class="section" id="frames">
+  <div class="section-title"><p class="eyebrow">OUR COLLECTION</p><h2>Featured Frames</h2><p>Find a style that suits you.</p></div>
+  <div class="filters">
+    <input id="search" oninput="filterProducts()" placeholder="Search frames...">
+    <select id="category" onchange="filterProducts()"><option value="all">All Types</option><option>Men</option><option>Women</option><option>Kids</option><option>Unisex</option></select>
+    <select id="type" onchange="filterProducts()"><option value="all">Frame Type</option><option>Full Rim</option><option>Half Rim</option><option>Rimless</option><option>Round</option><option>Rectangle</option><option>Cat Eye</option></select>
+  </div>
+  <div id="products" class="grid"></div>
+</section>
+
+<section class="promo"><div><p class="eyebrow">QUALITY EYEWEAR</p><h2>Your Eyes Deserve the Best.</h2><p>Choose comfortable frames and lens options made for everyday clarity.</p><a class="btn primary" href="#contact">Enquire on WhatsApp</a></div></section>
+
+<section class="section" id="lenses">
+  <div class="section-title"><p class="eyebrow">LENS TECHNOLOGY</p><h2>Lens Options</h2><p>Choose the right lens for your lifestyle.</p></div>
+  <div class="lens-grid">
+    <article><span>∞</span><h3>Single Vision</h3><p>Standard vision correction.</p><b>Starting ₹799</b></article>
+    <article><span>☀</span><h3>Anti-Glare</h3><p>Reduces glare and improves clarity.</p><b>Starting ₹1,299</b></article>
+    <article><span>▣</span><h3>Blue-Cut</h3><p>Helps filter blue light.</p><b>Starting ₹1,499</b></article>
+    <article><span>◒</span><h3>Photochromic</h3><p>Adapts to changing light.</p><b>Starting ₹2,499</b></article>
+    <article><span>◉</span><h3>Bifocal</h3><p>Two powers in one lens.</p><b>Starting ₹1,999</b></article>
+    <article><span>◎</span><h3>Progressive</h3><p>Smooth multi-focus vision.</p><b>Starting ₹2,999</b></article>
+  </div>
+</section>
+
+<section class="section" id="prices">
+  <div class="section-title"><p class="eyebrow">TRANSPARENT PRICING</p><h2>Price List</h2><p>Sample prices — edit them anytime in this file.</p></div>
+  <div class="price-grid">
+    <article><h3>Basic Frames</h3><strong>From ₹499</strong></article><article><h3>Premium Frames</h3><strong>From ₹999</strong></article>
+    <article><h3>Kids Frames</h3><strong>From ₹599</strong></article><article><h3>Sunglasses</h3><strong>From ₹699</strong></article>
+    <article><h3>Anti-Glare Lens</h3><strong>From ₹1,299</strong></article><article><h3>Blue-Cut Lens</h3><strong>From ₹1,499</strong></article>
+  </div>
+</section>
+
+<section class="section" id="sunglasses">
+  <div class="section-title"><p class="eyebrow">SUN PROTECTION</p><h2>Sunglasses</h2><p>Stylish protection for everyday use.</p></div>
+  <div class="category-grid"><div>🕶️<h3>Polarized</h3><p>Reduce reflected glare.</p></div><div>😎<h3>UV Protection</h3><p>Everyday outdoor comfort.</p></div><div>👓<h3>Aviator</h3><p>Classic statement style.</p></div><div>◯<h3>Wayfarer</h3><p>Timeless everyday look.</p></div></div>
+</section>
+
+<section class="section about" id="about">
+  <div><p class="eyebrow">ABOUT US</p><h2>Jagdamba Optical</h2><p>We provide quality frames, sunglasses and lens solutions with a focus on comfort, style and customer satisfaction.</p></div>
+  <div class="why"><h3>Why Choose Us?</h3><p>✓ Quality Products</p><p>✓ Affordable Prices</p><p>✓ Professional Guidance</p><p>✓ After-Sales Support</p></div>
+</section>
+
+<section class="contact" id="contact">
+  <div><p class="eyebrow">VISIT / CONTACT</p><h2>Let's Find Your Perfect Pair.</h2>
+  <p><b>Address:</b> [Edit your store address here]</p><p><b>State:</b> [Edit State]</p><p><b>Country:</b> India</p><p><b>Phone:</b> [Edit Phone Number]</p><p><b>Opening Hours:</b> [Edit Timing]</p></div>
+  <form onsubmit="sendWhatsApp(event)"><input id="name" required placeholder="Your Name"><input id="phone" required placeholder="Phone Number"><textarea id="message" placeholder="What are you looking for?"></textarea><button class="btn primary" type="submit">Send Enquiry on WhatsApp</button></form>
+</section>
+</main>
+
+<footer><div class="footer-brand">👑 <b>Jagdamba Optical</b><p>Your trusted destination for frames, lenses & eyewear.</p></div>
+<div><h4>Quick Links</h4><a href="#frames">Frames</a><a href="#lenses">Lenses</a><a href="#prices">Price List</a><a href="#contact">Contact</a></div>
+<div><h4>Store Info</h4><p>[Your Address]</p><p>[Your Phone]</p><p>India</p></div>
+<p class="copyright">© 2026 Jagdamba Optical. All Rights Reserved. <a href="admin.html" style="display:inline;color:#c7d2df">Admin</a></p></footer>
+<script src="script.js"></script>
+</body>
+</html>

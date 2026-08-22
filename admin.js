@@ -1,0 +1,19 @@
+const API=(window.API_BASE||"http://localhost:5000")+"/api";let token=localStorage.getItem("jagdamba_admin_token"),editing=null;
+async function api(path,opts={}){const r=await fetch(API+path,{headers:{"Content-Type":"application/json",...(token?{Authorization:"Bearer "+token}:{}),...(opts.headers||{})},...opts});const d=await r.json();if(!r.ok)throw Error(d.message||"Request failed");return d}
+function show(id){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");if(id==="dashboard")loadDashboard();if(id==="products")loadProducts();if(id==="enquiries")loadEnquiries();if(id==="settings")loadSettings()}
+async function login(){try{let d=await api("/auth/login",{method:"POST",body:JSON.stringify({email:email.value,password:password.value})});token=d.token;localStorage.setItem("jagdamba_admin_token",token);start()}catch(e){loginMsg.textContent=e.message}}
+function logout(){localStorage.removeItem("jagdamba_admin_token");location.reload()}
+function start(){login.classList.add("hidden");app.classList.remove("hidden");show("dashboard")}
+async function loadDashboard(){let d=await api("/dashboard");statProducts.textContent=d.products;statEnquiries.textContent=d.enquiries;statNew.textContent=d.newEnquiries}
+async function loadProducts(){let ps=await api("/products");productList.innerHTML=ps.map(p=>`<div class="item"><div><b>${p.name}</b><br><span class="pill">${p.cat} • ${p.type}</span> ₹${p.price}</div><div><button onclick='editProduct(${JSON.stringify(p)})'>Edit</button><button class="danger" onclick="removeProduct('${p._id}')">Hide</button></div></div>`).join("")||"<p>No products.</p>"}
+function newProduct(){editing=null;modalTitle.textContent="Add Product";productForm.reset();modal.classList.remove("hidden")}
+function editProduct(p){editing=p;modalTitle.textContent="Edit Product";Object.keys(p).forEach(k=>{if(productForm.elements[k])productForm.elements[k].value=p[k]??""});modal.classList.remove("hidden")}
+function closeModal(){modal.classList.add("hidden")}
+productForm.onsubmit=async e=>{e.preventDefault();let data=Object.fromEntries(new FormData(productForm));data.price=Number(data.price);try{if(editing)await api("/products/"+editing._id,{method:"PUT",body:JSON.stringify(data)});else await api("/products",{method:"POST",body:JSON.stringify(data)});closeModal();loadProducts();}catch(e){alert(e.message)}}
+async function removeProduct(id){if(confirm("Hide this product?")){await api("/products/"+id,{method:"DELETE"});loadProducts()}}
+async function loadEnquiries(){let es=await api("/enquiries");enquiryList.innerHTML=es.map(e=>`<div class="item"><div><b>${e.name}</b> — ${e.phone}<br>${e.product?`Product: ${e.product}<br>`:""}${e.message||""}<br><small>${new Date(e.createdAt).toLocaleString()}</small></div><div><select onchange="status('${e._id}',this.value)"><option ${e.status==="new"?"selected":""}>new</option><option ${e.status==="contacted"?"selected":""}>contacted</option><option ${e.status==="closed"?"selected":""}>closed</option></select><button class="danger" onclick="deleteEnquiry('${e._id}')">Delete</button></div></div>`).join("")||"<p>No enquiries.</p>"}
+async function status(id,v){await api("/enquiries/"+id,{method:"PATCH",body:JSON.stringify({status:v})})}
+async function deleteEnquiry(id){if(confirm("Delete enquiry?")){await api("/enquiries/"+id,{method:"DELETE"});loadEnquiries()}}
+async function loadSettings(){let s=await api("/settings");for(let k in s)if(settingsForm.elements[k])settingsForm.elements[k].value=s[k]||""}
+settingsForm.onsubmit=async e=>{e.preventDefault();try{await api("/settings",{method:"PUT",body:JSON.stringify(Object.fromEntries(new FormData(settingsForm)))});saveMsg.textContent="Settings saved successfully."}catch(e){saveMsg.textContent=e.message}}
+if(token)start();
